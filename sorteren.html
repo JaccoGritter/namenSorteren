@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+    body {
+        background-color: cornsilk;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #container {
+        display: flex;
+    }
+
+    #input, #output {
+        width: 20rem;
+        padding: 20px;
+        background-color: rgb(223, 223, 148);
+    }
+
+    #sorteer {
+        padding-top: 20px;
+        background-color:rgb(223, 223, 148);
+    }
+
+    
+    </style>
+
+</head>
+<body>
+    <p>Voer een naam in en bevestig met "enter".</p>
+    <p>Heb je alle namen ingevoerd, klik dan op "sorteer!"</p>
+    <input id="invoer" type="text" placeholder = "voer naam in"><div></div>
+    <!-- <button id="buttonVoerNaamIn">Verzend</button> -->
+    <br>
+
+    <div id="container">
+        <div id="input">Namen:</div>
+        <div id="sorteer">
+            <button id="buttonSorteer">Sorteer!</button>
+            <p>=====></p>
+        </div>
+        <div id="output">Gesorteerde namen:</div>
+    </div>
+
+
+    <script>
+    document.getElementById("buttonSorteer").addEventListener("click", sorteer);
+
+    document.getElementById("invoer").addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') voegNaamToe();
+        });
+
+    let naamArray = [];
+    
+    function voegNaamToe() {
+        //console.log(document.getElementById("invoer").value);
+        let invoer = document.getElementById("invoer").value;
+        document.getElementById("invoer").value = "";
+        if (invoer != "exit") {
+            naamArray.push(invoer);
+            let woord = document.createElement("p");
+            woord.innerText = invoer;
+            document.getElementById("input").appendChild(woord);
+
+        } else sorteer();
+    }
+
+    function sorteer() {
+        naamArray.sort();
+        for (let i=0; i<naamArray.length; i++){
+            //console.log(naamArray[i]);
+            let woord = document.createElement("p");
+            woord.innerText = naamArray[i];
+            document.getElementById("output").appendChild(woord);
+        }
+        
+    }
+
+    
+    
+    </script>
+</body>
+</html>
